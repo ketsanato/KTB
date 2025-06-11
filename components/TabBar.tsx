@@ -1,12 +1,23 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View,Text } from "react-native";
 import Animated ,{interpolate,useSharedValue,useAnimatedStyle} from "react-native-reanimated";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 export const MyTabBar = ({
   state,
   descriptors,
   navigation,position
 }: BottomTabBarProps) => {
+const icons={
+  index:(props)=><MaterialIcons name="home" size={24} {...props} />,
 
+  topup:(props)=><MaterialIcons name='paid' size={24} {...props} />,
+
+  wallet:(props)=><MaterialIcons name="wallet" size={24} {...props} />,
+  profile:(props)=><MaterialIcons name="person" size={24} {...props} />,
+  map:(props)=><MaterialIcons name="map" size={24} {...props} />,
+
+
+}
 
   return (
     <View style={styles.tabbar}>
@@ -58,11 +69,21 @@ export const MyTabBar = ({
             onLongPress={onLongPress}
             style={styles.tabItem}
           >
-          
+             {
+            icons[route.name]({
+              color:isFocused? '#673ab7' : '#222',
+            })
+          }
 
         <Animated.Text style={{ animatedIconStyle, color: '#673ab7'}}>
-              {label}
+       
+
+          <Text> 
+             {label}
+            </Text>  
             </Animated.Text>
+
+            
           </TouchableOpacity>
           
         );
@@ -74,7 +95,7 @@ export const MyTabBar = ({
 const styles = StyleSheet.create({
   tabbar: {
     position: "absolute",
-    bottom: 50,
+    bottom: 60,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -82,10 +103,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 80,
     paddingVertical: 15,
     borderRadius: 35,
-    shadowColor: "#000",
+    borderCurve:'continuous',
+     shadowColor: "#000",
+     
     shadowOffset: { width: 0, height: 10 },
     shadowRadius: 10,
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.1,   
+elevation: 5,
   },
   tabItem: {
     flex: 1,

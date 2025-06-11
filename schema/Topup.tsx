@@ -1,7 +1,9 @@
-import { z } from "zod";
+import { z } from "zod/v4";
+ type schema = z.infer<typeof schema>;
 
-  export const schema = z.object({
-    Phonenumber: z.string().min(1, { message: 'Required' })
-  });
+export const schema = z.object({
+  
+  Phonenumber: z.string(),
+  Code: z.string()
+});
 
-type schema = z.infer<typeof schema>;

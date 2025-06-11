@@ -1,4 +1,6 @@
 import Header1 from "@/components/Header1";
+import HeaderLogin from "@/components/HeaderLogin";
+import RaoundButton from "@/components/RaoundButton";
 import ScreenForm from "@/components/ScreenForm";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import { schema } from "@/schema/Login";
@@ -6,10 +8,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { StyleSheet, View } from "react-native";
-import { TextInput,Card ,Button} from "react-native-paper";
+import { StyleSheet, View, Text } from "react-native";
+import { Button, TextInput } from "react-native-paper";
 const login = () => {
-
   const router = useRouter();
   const {
     handleSubmit,
@@ -19,45 +20,64 @@ const login = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
+  const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
   return (
     <ScreenWrapper>
-      <Header1 props={{ title: "Login" }} />
-<ScreenForm>
+      <ScreenForm>
+        <View style={styles.container}>
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                placeholder="Phone Number"
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                mode="outlined"
+              />
+            )}
+            name="Phonenumber"
+          /> <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                placeholder="Phone Number"
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                mode="outlined"
+              />
+            )}
+            name="Phonenumber"
+          />
 
-      <View>
+          <Button
+            icon="login"
+            mode="contained"
+            onPress={() => router.push("(tabs)")}
+          >
+            Login{" "}
+          </Button>
 
-
-
-        <Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-              placeholder="Phone Number"
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              mode="outlined"
-            />
-          )}
-          name="Phonenumber"
-        />
-        {errors.firstName && <Text>This is required.</Text>}
-
-
-   <Button
-          icon="camera"
-          mode="contained"
-          onPress={() => router.push("(tabs)")}
-        >
-          Login{" "}
-        </Button>
-      </View>
+          <View style={styles.continuerText}>
+            <Button mode="text" onPress={() => router.push("/(auth)/register")}>
+              Register{" "}
+            </Button>
+            <Button
+              mode="text"
+              onPress={() => router.push("/(auth)/forgot_password")}
+            >
+              Forgot Password{" "}
+            </Button>
+          </View>
+        </View>
       </ScreenForm>
-
     </ScreenWrapper>
   );
 };
@@ -65,11 +85,12 @@ const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 export default login;
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
-  section: {
-    height: 150,
-    borderRadius: 20,
-    marginVertical: 10,
-    marginHorizontal: 20,
+  container: { flex: 1, 
+    flexDirection: "column",
+  justifyContent:'center', },
+  continuerText: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
 });

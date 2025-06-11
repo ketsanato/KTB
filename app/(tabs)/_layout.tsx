@@ -15,30 +15,29 @@ export default function TabLayout() {
           name="index"
           options={{
             title: "Home",
-              tabBarIcon: ({ color }) => <MaterialIcons size={28} name="house.fill" color={color} />,
-          }}
+            animation: 'fade'}}
         />
         <Tabs.Screen
           name="wallet"
           options={{
-            title: "wallet",
+            title: "wallet", animation: 'fade',
           }}
         />
         <Tabs.Screen
           name="topup"
           options={{
-            title: "topup",
+            title: "topup", animation: 'fade',
           }}
         />
         <Tabs.Screen
           name="profile"
           options={{
-            title: "profile",
+            title: "profile", animation: 'fade',
           }}
         />   <Tabs.Screen
           name="map"
           options={{
-            title: "Map",
+            title: "Map", animation: 'fade',
           }}
         />
       </Tabs>

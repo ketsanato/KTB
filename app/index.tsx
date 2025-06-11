@@ -3,6 +3,8 @@ import LottieView from "lottie-react-native";
 import { useEffect, useRef } from "react";
 import { StyleSheet } from "react-native";
 import Animated, { FadeIn, FadeOut, useSharedValue } from "react-native-reanimated";
+import { enableLegacyWebImplementation } from 'react-native-gesture-handler';
+enableLegacyWebImplementation(true);
 export default function App() {
   const width = useSharedValue(() => {});
 

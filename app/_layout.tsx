@@ -8,16 +8,23 @@ import {
   PaperProvider
 } from "react-native-paper";
 import "react-native-reanimated";
-import { KeyboardProvider } from 'react-native-keyboard-controller';
 export function Main() {
 
   return (
     <>
+
       <Stack
         screenOptions={{
           headerShown: false,
         }}
-      ></Stack>
+      >
+         <Stack.Screen
+        name="modal"
+        options={{
+          presentation: 'modal',
+        }}
+      />
+      </Stack>
     </>
   );
 }
@@ -39,9 +46,10 @@ export default function RootLayout() {
     <>
 
       <PaperProvider>
-
+ 
         <Main />
-      </PaperProvider>
+ 
+     </PaperProvider>
 
          <StatusBar style="auto" />
 
